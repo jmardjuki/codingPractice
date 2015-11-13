@@ -30,7 +30,7 @@ void linkedList_insert(struct nodeStruct **headRef, struct nodeStruct *node)
 }
 
 
-/* Print Node recursively */ 
+/* Print Node backward recursively */ 
 void linkedList_printBackwards(struct nodeStruct *head)
 {
     if ( head->next != NULL ) {
