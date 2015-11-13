@@ -29,14 +29,26 @@ void linkedList_insert(struct nodeStruct **headRef, struct nodeStruct *node)
     }
 }
 
+
 /* Print Node recursively */ 
 void linkedList_printBackwards(struct nodeStruct *head)
 {
     if ( head->next != NULL ) {
         linkedList_printBackwards(head->next);
-        printf("%d\n", head->item);
+        printf("%d,", head->item);
     }
-    // NULL
+
+}
+
+/* Print the whole linked list in order */
+void linkedList_printAll(struct nodeStruct *head)
+{
+    struct nodeStruct * node = head;
+    while (node->next != NULL) {
+        printf("%d,", node->item);
+        node = node->next;
+    }
+    printf("\n");
 
 }
 
@@ -45,13 +57,17 @@ int main()
 {
     struct nodeStruct *headP = (struct nodeStruct *)malloc(sizeof(*headP));
 
-    struct nodeStruct *newNode = linkedList_createNode(2);
+    struct nodeStruct *newNode = linkedList_createNode(3);
     linkedList_insert(&headP, newNode);
 
-    newNode = linkedList_createNode(1);
+    newNode = linkedList_createNode(2);
     linkedList_insert(&headP, newNode);
    
+    newNode = linkedList_createNode(1);
+    linkedList_insert(&headP, newNode);
 
     linkedList_printBackwards(headP);
+
+    linkedList_printAll(headP);
     return 0;
 }
