@@ -29,6 +29,11 @@ void linkedList_insert(struct nodeStruct **headRef, struct nodeStruct *node)
     }
 }
 
+void linkedList_reverseList(struct nodeStruct **head)
+{
+    struct nodeStruct *prev = head;
+    struct nodeStruct *current = prev->next;
+}
 
 /* Print Node backward recursively */ 
 void linkedList_printBackwards(struct nodeStruct *head)
@@ -49,6 +54,7 @@ void linkedList_printAll(struct nodeStruct *head)
         node = node->next;
     }
     printf("\n");
+    free(node);
 
 }
 
