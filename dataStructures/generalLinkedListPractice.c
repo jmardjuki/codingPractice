@@ -1,13 +1,32 @@
+/***************************************************************************
+ *  File Name: generalLinkedListPractice.c
+ *  Description: Implementation of various functions related to Linked List
+ *               for coding practice
+ *  Author: Janet Mardjuki
+ *  Year: 2015
+ ***************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Define Node structure */
+
+/*** GLOBALS VARIABLES AND DEFINITION ***/
+
+/**
+ * Node struct
+ *  Define Node structure
+ */
 struct nodeStruct {
     int item;
     struct nodeStruct *next;
 };
 
-/* Create a node */
+/*** FUNCTIONS IMPLEMENTATION ***/
+
+/** LinkedList_createNode 
+ *  Create a node 
+ *  @params:
+ *      int item: data to be created the ndoe form
+ */
 struct nodeStruct* linkedList_createNode(int item)
 {
     struct nodeStruct *newNode;
@@ -17,8 +36,14 @@ struct nodeStruct* linkedList_createNode(int item)
     return newNode; 
 }
 
-/* Insrt Head */
-void linkedList_insert(struct nodeStruct **headRef, struct nodeStruct *node)
+/**
+ *  linkedList_insertHead
+ *  Insert Node in the list from the Head
+ *  @params:
+ *      struct nodeStruct **headRed: the head refernce to the linked list to be inserted
+ *      struct nodeStruct *node: the node to be inserted 
+ */
+void linkedList_insertHead(struct nodeStruct **headRef, struct nodeStruct *node)
 {
     if ( headRef == NULL ) {
         *headRef = node;
@@ -29,10 +54,48 @@ void linkedList_insert(struct nodeStruct **headRef, struct nodeStruct *node)
     }
 }
 
+/**
+ *  linkedList_insertTail
+ *  Insert node from tail
+ *  @params:
+ *      struct ndoeStruct **headRef: the head reference to the linked list to be inserted
+ *      struct nodeStruct *node: the node to be inserted to tail
+ */
+void linkedList_insertTail(struct nodeStruct **headRef, struct nodeStruct *node)
+{
+    if ( headRef == NULL ) {
+        *headRef = node;
+    }       
+    else {
+        struct nodeStruct *current = *headRef;
+        while ( current->next != NULL ) {
+            current->next;
+        }
+        current->next = node;
+        free(current);
+    }
+}
+
+/* Reverse Linked List */
 void linkedList_reverseList(struct nodeStruct **head)
 {
-    struct nodeStruct *prev = head;
-    struct nodeStruct *current = prev->next;
+    struct nodeStruct *prev = NULL;
+    struct nodeStruct *current = *head;
+    struct nodeStruct *temp = NULL;
+
+    while ( current != NULL ) {
+        temp = current->next;
+        current->next = prev;
+        prev = temp;
+
+    }
+    *head = prev;
+
+    free(prev);
+    free(current);
+    free(temp);
+
+    return;
 }
 
 /* Print Node backward recursively */ 
