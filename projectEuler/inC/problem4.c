@@ -76,7 +76,7 @@ int convertToString(char * string, int number)
 //////////  
 int main(void)
 {
-    int i = 0, j = 0;
+    int i = 100, j = 100;
     int largestPal = 0;
     int temp = 0;
 
