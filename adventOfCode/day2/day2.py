@@ -15,7 +15,7 @@ def main():
     # Read textfile
     f = open("input.txt", 'r')
     lines = f.readlines()
-    
+    p = re.compile("([0-9]*)-([0-9]*) ([a-z]{1}): ([a-z]*)")
     count = 0
     
     for line in lines:
@@ -24,11 +24,11 @@ def main():
         char = ''
         password = ""
         
-        rest, char, password = line.strip().split(" ")
-        char = char.replace(":", "")
-        rest = rest.split("-")
-        minNum = int(rest[0])
-        maxNum = int(rest[1])
+        group = p.match(line)
+        minNum = int(group[1])
+        maxNum = int(group[2])
+        char = group[3]
+        password = group[4]
         
         if (validPasswordPart2(minNum, maxNum, char, password)):
             count+=1
